@@ -20,6 +20,18 @@ interface ISimpleSettingRepository
     public function delete(array $ids): int;
 
     /**
+     * 检查键名是否存在
+     *
+     * @Author nece001@163.com
+     * @DateTime 2023-08-27
+     *
+     * @param SimpleSettingEntity $entity
+     *
+     * @return boolean
+     */
+    public function exists(SimpleSettingEntity $entity): bool;
+
+    /**
      * 创建或更新
      *
      * @Author nece001@163.com
