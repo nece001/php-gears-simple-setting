@@ -53,7 +53,7 @@ interface ISimpleSettingRepository
      *
      * @return SimpleSettingEntity
      */
-    public function find(int $id): SimpleSettingEntity;
+    public function find(int $id): ?SimpleSettingEntity;
 
     /**
      * 用争名查询一个实体
@@ -65,7 +65,7 @@ interface ISimpleSettingRepository
      *
      * @return SimpleSettingEntity
      */
-    public function findByKeyName(string $key_name): SimpleSettingEntity;
+    public function findByKeyName(string $key_name): ?SimpleSettingEntity;
 
     /**
      * 分页列表

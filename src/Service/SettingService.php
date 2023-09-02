@@ -30,6 +30,8 @@ class SettingService
 
     public function getValue($key_name)
     {
+        echo PHP_VERSION;
+        $key_name = 'abc';
         $entity = $this->simpleSettingRepository->findByKeyName($key_name);
         if ($entity) {
             return $entity->getValue();
