@@ -24,6 +24,7 @@ class SimpleSettingEntity extends Entity
 
     public function getValue()
     {
+        return $this->key_value;
     }
 
     public function getOptions()

@@ -56,6 +56,18 @@ interface ISimpleSettingRepository
     public function find(int $id): SimpleSettingEntity;
 
     /**
+     * 用争名查询一个实体
+     *
+     * @Author nece001@163.com
+     * @DateTime 2023-09-02
+     *
+     * @param string $key_name
+     *
+     * @return SimpleSettingEntity
+     */
+    public function findByKeyName(string $key_name): SimpleSettingEntity;
+
+    /**
      * 分页列表
      *
      * @Author nece001@163.com
