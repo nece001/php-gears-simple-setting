@@ -1,6 +1,6 @@
 <?php
 
-namespace Nece\Gears\SimpleSetting;
+namespace Nece\Gears\SimpleSetting\Application;
 
 /**
  * 常量定义
@@ -13,6 +13,7 @@ class Consts
     const NO = 0;
     const YES = 1;
 
+    const VALUE_TYPE_BOOLEAN = 'boolean';
     const VALUE_TYPE_STRING = 'string';
     const VALUE_TYPE_NUMBER = 'number';
     const VALUE_TYPE_ARRAY = 'array';

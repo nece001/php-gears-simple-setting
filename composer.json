@@ -16,6 +16,7 @@
     ],
     "require": {
         "php": ">=7.2",
+        "nece001/nece001/php-util": "^1.0",
         "nece001/php-gears-validate-thinkphp": "^1.0"
     }
 }

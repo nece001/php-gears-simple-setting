@@ -1,18 +1,45 @@
 <?php
 
-namespace Nece\Gears\SimpleSetting\Service;
+namespace Nece\Gears\SimpleSetting\Application\Commands;
 
+use Nece\Gears\Commnads\IntCommandAbstract;
+use Nece\Gears\IValidator;
 use Nece\Gears\SimpleSetting\Entity\SimpleSettingEntity;
+use Nece\Gears\SimpleSetting\Repository\ISimpleSettingRepository;
 use Nece\Util\ArrayUtil;
 
 /**
- * 保存
+ * 创建记录命令
  *
  * @Author nece001@163.com
- * @DateTime 2023-08-27
+ * @DateTime 2023-10-05
  */
-class SaveCommand extends CommandAbstract
+class CreateCommand extends IntCommandAbstract
 {
+    /**
+     * 模型存储仓库
+     *
+     * @var ISimpleSettingRepository
+     * @Author nece001@163.com
+     * @DateTime 2023-07-02
+     */
+    protected $simpleSettingRepository;
+
+    /**
+     * 构造
+     *
+     * @Author nece001@163.com
+     * @DateTime 2023-08-27
+     *
+     * @param IValidate $validate
+     * @param ISimpleSettingRepository $simpleSettingRepository
+     */
+    public function __construct(IValidator $validate, ISimpleSettingRepository $simpleSettingRepository)
+    {
+        $this->validate = $validate;
+        $this->simpleSettingRepository = $simpleSettingRepository;
+    }
+
     /**
      * 运行
      *
