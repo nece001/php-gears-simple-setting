@@ -60,7 +60,8 @@ class ValueCommand extends CommandAbstract
         $entity = $this->simpleSettingRepository->findByKeyName($key_name);
 
         if ($entity) {
-            return $this->formatValue($entity->key_value, $entity->value_type);
+            $value = $entity->key_value ? $entity->key_value : $entity->default_value;
+            return $this->formatValue($value, $entity->value_type);
         }
         return null;
     }

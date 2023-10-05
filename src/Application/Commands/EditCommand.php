@@ -2,18 +2,19 @@
 
 namespace Nece\Gears\SimpleSetting\Application\Commands;
 
-use Nece\Gears\Commands\IntCommandAbstract;
+use Nece\Gears\Commands\ArrayCommandAbstract;
 use Nece\Gears\IValidator;
+use Nece\Gears\SimpleSetting\Application\Consts;
 use Nece\Gears\SimpleSetting\Repository\ISimpleSettingRepository;
 use Nece\Util\ArrayUtil;
 
 /**
- * 值设置命令
+ * 编辑记录命令
  *
  * @Author nece001@163.com
  * @DateTime 2023-10-05
  */
-class SetCommand extends IntCommandAbstract
+class EditCommand extends ArrayCommandAbstract
 {
     /**
      * 模型存储仓库
@@ -43,26 +44,36 @@ class SetCommand extends IntCommandAbstract
      * 运行
      *
      * @Author nece001@163.com
-     * @DateTime 2023-10-05
+     * @DateTime 2023-08-27
      *
      * @param array $params
      *
-     * @return integer
+     * @return array
      */
-    public function execute(array $params): int
+    public function execute(array $params): array
     {
-        $this->validate->validate($params, array(
-            'id' => 'require',
-            'key_value' => 'require',
-        ));
-
+        $data = array('entity' => null);
         $id = ArrayUtil::getValue($params, 'id');
-
-        $entity = $this->simpleSettingRepository->find($id);
-        if ($entity) {
-            $entity->key_value = ArrayUtil::getValue($params, 'key_value');
-            return $this->simpleSettingRepository->setValue($entity);
+        if ($id) {
+            $data['entity'] = $this->simpleSettingRepository->find($id);
         }
-        return 0;
+
+        $data['input_type'] = array(
+            Consts::INPUT_TYPE_TEXT,
+            Consts::INPUT_TYPE_SELECT,
+            Consts::INPUT_TYPE_RADIO,
+            Consts::INPUT_TYPE_CHECKBOX,
+            Consts::INPUT_TYPE_FILE,
+            Consts::INPUT_TYPE_TEXTAREA,
+        );
+
+        $data['value_type'] = array(
+            Consts::VALUE_TYPE_STRING,
+            Consts::VALUE_TYPE_NUMBER,
+            Consts::VALUE_TYPE_BOOLEAN,
+            Consts::VALUE_TYPE_ARRAY
+        );
+
+        return $data;
     }
 }

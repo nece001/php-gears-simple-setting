@@ -32,7 +32,7 @@ interface ISimpleSettingRepository
     public function exists(SimpleSettingEntity $entity): bool;
 
     /**
-     * 创建或更新
+     * 创建或更新（只更新记录不更新值）
      *
      * @Author nece001@163.com
      * @DateTime 2023-08-27
@@ -42,6 +42,18 @@ interface ISimpleSettingRepository
      * @return integer
      */
     public function createOrUpdate(SimpleSettingEntity $entity): int;
+
+    /**
+     * 设置值
+     *
+     * @Author nece001@163.com
+     * @DateTime 2023-10-05
+     *
+     * @param SimpleSettingEntity $entity
+     *
+     * @return integer
+     */
+    public function setValue(SimpleSettingEntity $entity): int;
 
     /**
      * 查询一个实体

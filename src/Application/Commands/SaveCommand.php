@@ -2,19 +2,19 @@
 
 namespace Nece\Gears\SimpleSetting\Application\Commands;
 
-use Nece\Gears\Commnads\IntCommandAbstract;
+use Nece\Gears\Commands\IntCommandAbstract;
 use Nece\Gears\IValidator;
 use Nece\Gears\SimpleSetting\Entity\SimpleSettingEntity;
 use Nece\Gears\SimpleSetting\Repository\ISimpleSettingRepository;
 use Nece\Util\ArrayUtil;
 
 /**
- * 创建记录命令
+ * 保存记录命令
  *
  * @Author nece001@163.com
  * @DateTime 2023-10-05
  */
-class CreateCommand extends IntCommandAbstract
+class SaveCommand extends IntCommandAbstract
 {
     /**
      * 模型存储仓库
@@ -69,10 +69,9 @@ class CreateCommand extends IntCommandAbstract
         $entity->note = ArrayUtil::getValue($params, 'note', '');
         $entity->input_type = ArrayUtil::getValue($params, 'input_type');
         $entity->value_type = ArrayUtil::getValue($params, 'value_type');
-        $entity->key_name = ArrayUtil::getValue($params, 'key_name');
-        $entity->key_value = ArrayUtil::getValue($params, 'key_value');
         $entity->default_value = ArrayUtil::getValue($params, 'default_value', '');
         $entity->options = ArrayUtil::getValue($params, 'options', '');
+        $entity->key_name = ArrayUtil::getValue($params, 'key_name');
 
         if ($this->simpleSettingRepository->exists($entity)) {
             throw $this->validate->buildException('键名存在重复');

@@ -2,7 +2,7 @@
 
 namespace Nece\Gears\SimpleSetting\Application\Commands;
 
-use Nece\Gears\Commnads\IntCommandAbstract;
+use Nece\Gears\Commands\IntCommandAbstract;
 use Nece\Gears\IValidator;
 use Nece\Gears\SimpleSetting\Repository\ISimpleSettingRepository;
 use Nece\Util\ArrayUtil;

@@ -2,18 +2,18 @@
 
 namespace Nece\Gears\SimpleSetting\Application\Commands;
 
-use Nece\Gears\Commands\IntCommandAbstract;
+use Nece\Gears\Commands\ObjectCommandAbstract;
 use Nece\Gears\IValidator;
 use Nece\Gears\SimpleSetting\Repository\ISimpleSettingRepository;
 use Nece\Util\ArrayUtil;
 
 /**
- * 值设置命令
+ * 获取值命令
  *
  * @Author nece001@163.com
  * @DateTime 2023-10-05
  */
-class SetCommand extends IntCommandAbstract
+class EntityCommand extends ObjectCommandAbstract
 {
     /**
      * 模型存储仓库
@@ -43,26 +43,19 @@ class SetCommand extends IntCommandAbstract
      * 运行
      *
      * @Author nece001@163.com
-     * @DateTime 2023-10-05
+     * @DateTime 2023-08-27
      *
      * @param array $params
      *
-     * @return integer
+     * @return object|null
      */
-    public function execute(array $params): int
+    public function execute(array $params): object
     {
         $this->validate->validate($params, array(
             'id' => 'require',
-            'key_value' => 'require',
         ));
 
-        $id = ArrayUtil::getValue($params, 'id');
-
-        $entity = $this->simpleSettingRepository->find($id);
-        if ($entity) {
-            $entity->key_value = ArrayUtil::getValue($params, 'key_value');
-            return $this->simpleSettingRepository->setValue($entity);
-        }
-        return 0;
+        $id = ArrayUtil::getValue($params, 'id', '');
+        return $this->simpleSettingRepository->find($id);
     }
 }
