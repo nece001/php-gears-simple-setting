@@ -2,7 +2,7 @@
 
 namespace Nece\Gears\SimpleSetting\Application\Queries;
 
-use Nece\Gears\Commnads\PaginatorCommandAbstract;
+use Nece\Gears\Commands\PaginatorCommandAbstract;
 use Nece\Gears\IValidator;
 use Nece\Gears\Paginator;
 use Nece\Gears\SimpleSetting\Repository\ISimpleSettingRepository;
