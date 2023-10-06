@@ -31,12 +31,12 @@ class SaveCommand extends IntCommandAbstract
      * @Author nece001@163.com
      * @DateTime 2023-08-27
      *
-     * @param IValidate $validate
+     * @param IValidator $validator
      * @param ISimpleSettingRepository $simpleSettingRepository
      */
-    public function __construct(IValidator $validate, ISimpleSettingRepository $simpleSettingRepository)
+    public function __construct(IValidator $validator, ISimpleSettingRepository $simpleSettingRepository)
     {
-        $this->validate = $validate;
+        parent::__construct($validator);
         $this->simpleSettingRepository = $simpleSettingRepository;
     }
 
@@ -52,7 +52,7 @@ class SaveCommand extends IntCommandAbstract
      */
     public function execute(array $params): int
     {
-        $this->validate->validate($params, array(
+        $this->validator->validate($params, array(
             'title' => 'require',
             'input_type' => 'require',
             'value_type' => 'require',
@@ -74,7 +74,7 @@ class SaveCommand extends IntCommandAbstract
         $entity->key_name = ArrayUtil::getValue($params, 'key_name');
 
         if ($this->simpleSettingRepository->exists($entity)) {
-            throw $this->validate->buildException('键名存在重复');
+            throw $this->validator->buildException('键名存在重复');
         }
 
         return $this->simpleSettingRepository->createOrUpdate($entity);

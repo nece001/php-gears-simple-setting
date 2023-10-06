@@ -30,12 +30,12 @@ class PagedList extends PaginatorCommandAbstract
      * @Author nece001@163.com
      * @DateTime 2023-08-27
      *
-     * @param IValidate $validate
+     * @param IValidator $validator
      * @param ISimpleSettingRepository $simpleSettingRepository
      */
-    public function __construct(IValidator $validate, ISimpleSettingRepository $simpleSettingRepository)
+    public function __construct(IValidator $validator, ISimpleSettingRepository $simpleSettingRepository)
     {
-        $this->validate = $validate;
+        parent::__construct($validator);
         $this->simpleSettingRepository = $simpleSettingRepository;
     }
 
