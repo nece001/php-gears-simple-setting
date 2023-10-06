@@ -60,62 +60,8 @@ class ValueCommand extends CommandAbstract
         $entity = $this->simpleSettingRepository->findByKeyName($key_name);
 
         if ($entity) {
-            $value = $entity->key_value ? $entity->key_value : $entity->default_value;
-            return $this->formatValue($value, $entity->value_type);
+            return $entity->getValue();
         }
         return null;
-    }
-
-    /**
-     * 格式化
-     *
-     * @Author nece001@163.com
-     * @DateTime 2023-10-05
-     *
-     * @param string $value
-     * @param string $type
-     *
-     * @return mixed
-     */
-    private function formatValue($value, $type)
-    {
-        switch ($type) {
-            case Consts::VALUE_TYPE_BOOLEAN:
-                return boolval($value);
-            case Consts::VALUE_TYPE_STRING:
-                return strval($value);
-            case Consts::VALUE_TYPE_NUMBER:
-                return floatval($value);
-            case Consts::VALUE_TYPE_ARRAY:
-                return $this->valueToArray($value);
-        }
-
-        return $value;
-    }
-
-    /**
-     * 转数组
-     *
-     * @Author nece001@163.com
-     * @DateTime 2023-10-05
-     *
-     * @param string $value
-     *
-     * @return array
-     */
-    private function valueToArray($value)
-    {
-        $data = array();
-        $rows = explode("\n", $value);
-        foreach ($rows as $line) {
-            $line = trim($line);
-            $parts = explode(':', $line);
-            if (count($parts) > 1) {
-                $data[$parts[0]] = $parts[1];
-            } else {
-                $data[] = $line;
-            }
-        }
-        return $data;
     }
 }
